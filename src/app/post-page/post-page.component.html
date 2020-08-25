@@ -1,22 +1,23 @@
-<div class="post">
-    <div class="header">
-        <h2>Post title</h2>
-        <button 
-            routerLink="/" 
-            class="btn btn-link"
-        >Main page</button>
+<div *ngIf="post$ | async as post; else loading">
+    <div class="post">
+      <div class="header">
+        <h1>{{ post.title }}</h1>
+  
+        <button routerLink="/" class="btn btn-link">Main page</button>
+      </div>
+  
+      <div class="info">
+        <strong>{{ post.author }}</strong>
+        <small>{{ post.date | date:'medium' }}</small>
+      </div>
+  
+      <div>
+        <quill-view-html [content]="post.text"></quill-view-html>
+      </div>
     </div>
-
-    <div class="info">
-        <strong>Author</strong>
-        <small>12.10.2020</small>
-    </div>
-
-    <div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt fuga, atque repellendus facilis odit magnam, laborum voluptatibus itaque in hic ipsa consectetur quasi perspiciatis doloribus rem aspernatur! Quasi deleniti, vero quibusdam maiores quis labore autem rem voluptate dolorem esse explicabo iusto eveniet natus eum? Illum accusantium eum beatae earum corrupti.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt fuga, atque repellendus facilis odit magnam, laborum voluptatibus itaque in hic ipsa consectetur quasi perspiciatis doloribus rem aspernatur! Quasi deleniti, vero quibusdam maiores quis labore autem rem voluptate dolorem esse explicabo iusto eveniet natus eum? Illum accusantium eum beatae earum corrupti.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt fuga, atque repellendus facilis odit magnam, laborum voluptatibus itaque in hic ipsa consectetur quasi perspiciatis doloribus rem aspernatur! Quasi deleniti, vero quibusdam maiores quis labore autem rem voluptate dolorem esse explicabo iusto eveniet natus eum? Illum accusantium eum beatae earum corrupti.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt fuga, atque repellendus facilis odit magnam, laborum voluptatibus itaque in hic ipsa consectetur quasi perspiciatis doloribus rem aspernatur! Quasi deleniti, vero quibusdam maiores quis labore autem rem voluptate dolorem esse explicabo iusto eveniet natus eum? Illum accusantium eum beatae earum corrupti.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt fuga, atque repellendus facilis odit magnam, laborum voluptatibus itaque in hic ipsa consectetur quasi perspiciatis doloribus rem aspernatur! Quasi deleniti, vero quibusdam maiores quis labore autem rem voluptate dolorem esse explicabo iusto eveniet natus eum? Illum accusantium eum beatae earum corrupti.</p>
-    </div>
-</div>
+  </div>
+  
+  <ng-template #loading>
+    <p class="text-center">Loading post...</p>
+  </ng-template>
+  
